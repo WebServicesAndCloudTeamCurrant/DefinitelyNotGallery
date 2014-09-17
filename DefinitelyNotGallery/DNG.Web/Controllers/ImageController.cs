@@ -27,5 +27,11 @@
             this.data.SaveChanges();
             return Ok();
         }
+
+        [HttpGet]
+        public string Get()
+        {
+            return "somevalue";
+        }
     }
 }
