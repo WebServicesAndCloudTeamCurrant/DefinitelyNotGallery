@@ -7,12 +7,12 @@
     using DNG.Data.Repositories;
     using DNG.Models;
 
-    public class DNGData : IDNGData
+    public class DngData : IDngData
     {
         private DbContext context;
         private IDictionary<Type, object> repositories;
 
-        public DNGData(DbContext context)
+        public DngData(DbContext context)
         {
             this.context = context;
             this.repositories = new Dictionary<Type, object>();

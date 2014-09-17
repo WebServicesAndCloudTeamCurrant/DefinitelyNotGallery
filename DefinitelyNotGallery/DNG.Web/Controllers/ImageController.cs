@@ -10,11 +10,11 @@
     {
         // Poor man's dependency inversion
         public ImageController()
-            : this(new DNGData(new DngDbContext()))
+            : this(new DngData(new DngDbContext()))
         {
         }
 
-        public ImageController(IDNGData data)
+        public ImageController(IDngData data)
             : base(data)
         {
         }

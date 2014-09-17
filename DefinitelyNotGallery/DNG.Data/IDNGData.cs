@@ -4,7 +4,7 @@ namespace DNG.Data
     using DNG.Data.Repositories;
     using DNG.Models;
 
-    public interface IDNGData
+    public interface IDngData
     {
         IRepository<User> Users { get; }
 

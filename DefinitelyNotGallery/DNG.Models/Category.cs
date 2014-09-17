@@ -22,6 +22,10 @@
 
         public string Description { get; set; }
 
+        public int? ParentID { get; set; }
+
+        public virtual Category Parent { get; set; }
+
         public virtual ICollection<Image> Images
         {
             get

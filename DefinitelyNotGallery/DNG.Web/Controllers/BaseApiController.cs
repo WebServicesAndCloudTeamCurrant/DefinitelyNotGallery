@@ -5,15 +5,15 @@
 
     public abstract class BaseApiController : ApiController
     {
-        protected IDNGData data;
+        protected IDngData data;
 
         // Poor man's dependency inversion
         protected BaseApiController()
-            : this(new DNGData(new DngDbContext()))
+            : this(new DngData(new DngDbContext()))
         {
         }
 
-        protected BaseApiController(IDNGData data)
+        protected BaseApiController(IDngData data)
         {
             this.data = data;
         }
