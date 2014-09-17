@@ -1,9 +1,11 @@
 ﻿namespace DNG.Data
 {
+    using System.Data.Entity;
+    
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     using DNG.Data.Migrations;
     using DNG.Models;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Data.Entity;
 
     public class DngDbContext : IdentityDbContext<User>
     {
@@ -16,8 +18,6 @@
         public IDbSet<Category> Categories { get; set; }
 
         public IDbSet<Image> Images { get; set; }
-
-     //   public IDbSet<Subscription> Subscriptions { get; set; }
 
         public static DngDbContext Create()
         {

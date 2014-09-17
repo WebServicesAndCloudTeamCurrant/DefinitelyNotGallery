@@ -42,14 +42,6 @@
             }
         }
 
-        //public IRepository<Subscription> Subscriptions
-        //{
-        //    get
-        //    {
-        //        return this.GetRepository<Subscription>();
-        //    }
-        //}
-
         public int SaveChanges()
         {
             return this.context.SaveChanges();
