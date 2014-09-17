@@ -18,6 +18,7 @@
         private ICollection<Category> subscriptions;
 
         public User()
+            : base()
         {
             this.images = new HashSet<Image>();
             this.followers = new HashSet<User>();

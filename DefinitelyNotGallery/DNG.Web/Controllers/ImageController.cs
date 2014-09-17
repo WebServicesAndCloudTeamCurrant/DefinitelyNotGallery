@@ -8,11 +8,12 @@
 
     public class ImageController : BaseApiController
     {
-        // Poor man's dependency inversion
-        public ImageController()
-            : this(new DngData(new DngDbContext()))
-        {
-        }
+        //// Poor man's dependency inversion
+        //// Switched to Ninject
+        //public ImageController()
+        //    : this(new DngData(new DngDbContext()))
+        //{
+        //}
 
         public ImageController(IDngData data)
             : base(data)

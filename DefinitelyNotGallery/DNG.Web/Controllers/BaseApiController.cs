@@ -7,11 +7,12 @@
     {
         protected IDngData data;
 
-        // Poor man's dependency inversion
-        protected BaseApiController()
-            : this(new DngData(new DngDbContext()))
-        {
-        }
+        //// Poor man's dependency inversion
+        //// Switched to Ninject
+        //protected BaseApiController()
+        //    : this(new DngData(new DngDbContext()))
+        //{
+        //}
 
         protected BaseApiController(IDngData data)
         {
