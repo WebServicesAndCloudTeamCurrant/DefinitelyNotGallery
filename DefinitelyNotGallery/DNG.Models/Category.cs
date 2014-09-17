@@ -6,10 +6,12 @@
     public class Category
     {
         private ICollection<Image> images;
+        private ICollection<User> subscribers;
 
         public Category()
         {
             this.images = new HashSet<Image>();
+            this.subscribers = new HashSet<User>();
         }
 
         [Key]
@@ -36,6 +38,19 @@
             set
             {
                 this.images = value;
+            }
+        }
+
+        public virtual ICollection<User> Subscribers
+        {
+            get
+            {
+                return this.subscribers;
+            }
+
+            set
+            {
+                this.subscribers = value;
             }
         }
     }

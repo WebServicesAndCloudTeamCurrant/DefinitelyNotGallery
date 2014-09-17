@@ -5,7 +5,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Data.Entity;
 
-    public class DngDbContext : IdentityDbContext<ApplicationUser>
+    public class DngDbContext : IdentityDbContext<User>
     {
         public DngDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
