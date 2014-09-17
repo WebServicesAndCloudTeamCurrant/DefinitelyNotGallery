@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D6D0C1F1-2B0D-4525-8044-DC7B8EC53540}</ProjectGuid>
+    <ProjectGuid>{D686AA6F-98A3-46FA-B03B-D4DE3C90BF25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DNG.Models</RootNamespace>
-    <AssemblyName>DNG.Models</AssemblyName>
+    <RootNamespace>DNG.Data</RootNamespace>
+    <AssemblyName>DNG.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -52,16 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationUser.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Image.cs" />
-    <Compile Include="Subscription.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="DngDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNG.Models\DNG.Models.csproj">
+      <Project>{d6d0c1f1-2b0d-4525-8044-dc7b8ec53540}</Project>
+      <Name>DNG.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
