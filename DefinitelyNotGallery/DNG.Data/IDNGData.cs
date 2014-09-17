@@ -12,7 +12,7 @@ namespace DNG.Data
 
         IRepository<Image> Images { get; }
 
-        IRepository<Subscription> Subscriptions { get; }
+     //   IRepository<Subscription> Subscriptions { get; }
 
         int SaveChanges();
     }

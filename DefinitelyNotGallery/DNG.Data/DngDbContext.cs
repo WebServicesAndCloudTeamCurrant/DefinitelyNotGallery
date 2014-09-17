@@ -17,7 +17,7 @@
 
         public IDbSet<Image> Images { get; set; }
 
-        public IDbSet<Subscription> Subscriptions { get; set; }
+     //   public IDbSet<Subscription> Subscriptions { get; set; }
 
         public static DngDbContext Create()
         {
