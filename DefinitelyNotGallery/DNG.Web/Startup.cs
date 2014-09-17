@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Http;
-using System.Linq;
+﻿using DNG.Data;
 using Microsoft.Owin;
-using Owin;
+using Ninject;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
-using Ninject.Web.WebApi;
-using Ninject.Web;
-using Ninject;
+using Owin;
 using System.Reflection;
-using DNG.Data;
+using System.Web.Http;
+
 [assembly: OwinStartup(typeof(DNG.Web.Startup))]
 
 namespace DNG.Web
@@ -19,7 +15,7 @@ namespace DNG.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app); 
+            ConfigureAuth(app);
             app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(GlobalConfiguration.Configuration);
         }
 
@@ -36,8 +32,6 @@ namespace DNG.Web
             kernel.Bind<IDngData>().To<DngData>()
                 .WithConstructorArgument("context",
                     c => new DngDbContext());
-
-            
         }
     }
 }
