@@ -59,5 +59,39 @@
 
             return Ok(followers);
         }
+
+        [HttpGet]
+        [Route("Users/{username}/following")]
+        public IHttpActionResult Following(string username)
+        {
+            var foundUser = this.GetUser(username);
+
+            if (foundUser == null)
+            {
+                return BadRequest("User does not exist - invalid username.");
+            }
+
+            var following = foundUser.Following
+                .AsQueryable().Select(UserViewModel.FromUser);
+
+            return Ok(following);
+        }
+
+        [HttpGet]
+        [Route("Users/{username}/subscriptions")]
+        public IHttpActionResult Subscriptions(string username)
+        {
+            var foundUser = this.GetUser(username);
+
+            if (foundUser == null)
+            {
+                return BadRequest("User does not exist - invalid username.");
+            }
+
+            var subscriptions = foundUser.Subsciptions
+                .AsQueryable().Select(CategoryViewModel.FromCategory);
+
+            return Ok(subscriptions);
+        }
     }
 }
