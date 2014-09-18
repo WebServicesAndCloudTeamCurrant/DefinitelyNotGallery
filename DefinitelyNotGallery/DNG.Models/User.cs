@@ -35,6 +35,9 @@
             return userIdentity;
         }
 
+        [Index("IX_User_UserName", IsUnique=true)]
+        public override string UserName { get; set; }
+
         [MinLength(2)]
         [MaxLength(20)]
         public string FirstName { get; set; }
@@ -51,8 +54,14 @@
         {
             get
             {
-                // TODO: calculate age by date of birth
-                throw new NotImplementedException("Гърмим културно :)");
+                if (this.DateOfBirth == null)
+                {
+                    return null;
+                }
+
+                var age = DateTime.Now.Year - this.DateOfBirth.Value.Year;
+
+                return age;
             }
         }
 
