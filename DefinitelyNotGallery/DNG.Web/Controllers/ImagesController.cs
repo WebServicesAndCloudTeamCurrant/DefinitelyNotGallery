@@ -5,16 +5,11 @@
 
     using DNG.Data;
     using DNG.Models;
+    using DNG.Web.Models;
 
     public class ImagesController : BaseApiController
     {
-        //// Poor man's dependency inversion
-        //// Switched to Ninject
-        //public ImageController()
-        //    : this(new DngData(new DngDbContext()))
-        //{
-        //}
-
+        
         public ImagesController(IDngData data)
             : base(data)
         {
@@ -29,9 +24,14 @@
         }
 
         [HttpGet]
-        public string Get()
+        public IHttpActionResult All()
         {
-            return "somevalue";
+            var images = this.data
+                .Images
+                .All()
+                .Select(ImageViewModel.FromUser);
+
+            return Ok(images);
         }
     }
 }
