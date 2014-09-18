@@ -1,12 +1,10 @@
 ﻿namespace DNG.Web.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq.Expressions;
+
     using DNG.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
 
     public class UserViewModel
     {
@@ -16,10 +14,12 @@ using System.Web;
             {
                 return x => new UserViewModel 
                 { 
+                    Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName, 
-                    DateOfBirth = x.DateOfBirth, 
-                    Age = x.Age, 
+                    UserName = x.UserName,
+                    Email = x.Email,
+                    DateOfBirth = x.DateOfBirth,
                     Country = x.Country, 
                     City = x.City 
                 };
@@ -36,9 +36,11 @@ using System.Web;
         [MaxLength(20)]
         public string LastName { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }
+        public string UserName { get; set; }
 
-        public int? Age { get; set; }
+        public string Email { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
 
         [MinLength(2)]
         [MaxLength(20)]

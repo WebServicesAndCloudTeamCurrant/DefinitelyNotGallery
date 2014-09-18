@@ -17,7 +17,20 @@
         {
         }
 
+        //[Authorize(Roles="Admin")]
         [HttpGet]
+        public IHttpActionResult All()
+        {
+            var users = this.data
+                .Users
+                .All()
+                .Select(UserViewModel.FromUser);
+
+            return Ok(users);
+        }
+
+        [HttpGet]
+        [Route("Users/{username}")]
         public IHttpActionResult ByUsername(string username)
         {
             var foundUser = this.GetUserModel(username);
@@ -31,6 +44,7 @@
         }
 
         [HttpGet]
+        [Route("Users/{username}/followers")]
         public IHttpActionResult Followers(string username)
         {
             var foundUser = this.GetUser(username);
