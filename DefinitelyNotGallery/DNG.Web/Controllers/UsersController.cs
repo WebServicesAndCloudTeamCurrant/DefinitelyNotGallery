@@ -93,5 +93,53 @@
 
             return Ok(subscriptions);
         }
+
+        [HttpPost]
+        [Route("Users/{currentUser}/follow/{userToFollow}")]
+        public IHttpActionResult Follow(string currentUser, string userToFollow)
+        {
+            var foundUser = this.GetUser(currentUser);
+
+            if (foundUser == null)
+            {
+                return BadRequest("User does not exist - invalid username.");
+            }
+
+            var foundUserToFollow = this.GetUser(userToFollow);
+
+            if (foundUserToFollow == null)
+            {
+                return BadRequest("User to follow does not exist - invalid username.");
+            }
+
+            foundUser.Following.Add(foundUserToFollow);
+            foundUserToFollow.Followers.Add(foundUser);
+
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("Users/{currentUser}/unfollow/{userToUnFollow}")]
+        public IHttpActionResult UnFollow(string currentUser, string userToUnFollow)
+        {
+            var foundUser = this.GetUser(currentUser);
+
+            if (foundUser == null)
+            {
+                return BadRequest("User does not exist - invalid username.");
+            }
+
+            var foundUserToUnFollow = this.GetUser(userToUnFollow);
+
+            if (foundUserToUnFollow == null)
+            {
+                return BadRequest("User to follow does not exist - invalid username.");
+            }
+
+            foundUser.Following.Remove(foundUserToUnFollow);
+            foundUserToUnFollow.Followers.Remove(foundUser);
+
+            return Ok();
+        }
     }
 }
