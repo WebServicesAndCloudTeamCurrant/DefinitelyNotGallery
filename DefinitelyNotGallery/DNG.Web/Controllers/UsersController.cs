@@ -94,7 +94,7 @@
             return Ok(subscriptions);
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("Users/{currentUser}/follow/{userToFollow}")]
         public IHttpActionResult Follow(string currentUser, string userToFollow)
         {
