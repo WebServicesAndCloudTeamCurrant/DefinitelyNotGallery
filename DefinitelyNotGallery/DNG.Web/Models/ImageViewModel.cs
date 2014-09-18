@@ -7,7 +7,7 @@
 
     public class ImageViewModel
     {
-        public static Expression<Func<Image, ImageViewModel>> FromUser
+        public static Expression<Func<Image, ImageViewModel>> FromImage
         {
             get
             {

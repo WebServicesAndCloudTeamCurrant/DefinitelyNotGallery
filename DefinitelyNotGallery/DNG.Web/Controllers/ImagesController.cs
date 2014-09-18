@@ -2,6 +2,7 @@
 {
     using System.Web.Http;
     using System.Linq;
+    
 
     using DNG.Data;
     using DNG.Models;
@@ -16,10 +17,16 @@
         }
 
         [HttpPost]
-        public IHttpActionResult Create()
+        public IHttpActionResult Upload(Image image)
         {
-            // Used to create the tables not associated with users 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            this.data.Images.Add(image);
             this.data.SaveChanges();
+
             return Ok();
         }
 
@@ -29,7 +36,19 @@
             var images = this.data
                 .Images
                 .All()
-                .Select(ImageViewModel.FromUser);
+                .Select(ImageViewModel.FromImage);
+
+            return Ok(images);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetByCategory(int categoryId)
+        {
+            var images = this.data
+                .Images
+                .All()
+                .Where(i => i.CategoryID == categoryId)
+                .Select(ImageViewModel.FromImage);
 
             return Ok(images);
         }
