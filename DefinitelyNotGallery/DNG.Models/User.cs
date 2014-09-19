@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -26,16 +26,7 @@
             this.subscriptions = new HashSet<Category>();
         }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-
-            // Add custom user claims here
-            return userIdentity;
-        }
-
-        [Index("IX_User_UserName", IsUnique=true)]
+        [Index("IX_User_UserName", IsUnique = true)]
         public override string UserName { get; set; }
 
         [MinLength(2)]
@@ -123,6 +114,15 @@
             {
                 this.subscriptions = value;
             }
+        }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+
+            // Add custom user claims here
+            return userIdentity;
         }
     }
 }

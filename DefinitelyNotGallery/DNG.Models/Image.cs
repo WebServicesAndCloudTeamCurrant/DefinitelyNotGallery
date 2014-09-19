@@ -6,14 +6,14 @@
     public class Image
     {
         [Key]
-        public int ImageID { get; set; } // or GUID ?
+        public int ImageID { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
 
         [Required]
-        [DataType(DataType.ImageUrl)] // not sure for this property !
+        [DataType(DataType.ImageUrl)]
         public string Url { get; set; }
 
         public string Description { get; set; }

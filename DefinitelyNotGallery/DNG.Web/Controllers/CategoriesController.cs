@@ -71,7 +71,11 @@
                 return BadRequest(ModelState);
             }
 
-            var existingCategory = this.data.Categories.All().FirstOrDefault(a => a.CategoryID == id);
+            var existingCategory = this.data
+                .Categories
+                .All()
+                .FirstOrDefault(a => a.CategoryID == id);
+
             if (existingCategory == null)
             {
                 return BadRequest("Such category does not exists!");
@@ -87,7 +91,11 @@
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var existingCategory = this.data.Categories.All().FirstOrDefault(a => a.CategoryID == id);
+            var existingCategory = this.data
+                .Categories
+                .All()
+                .FirstOrDefault(a => a.CategoryID == id);
+
             if (existingCategory == null)
             {
                 return BadRequest("Such category does not exists!");

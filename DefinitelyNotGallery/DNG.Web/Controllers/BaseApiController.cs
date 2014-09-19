@@ -11,13 +11,6 @@
     {
         protected IDngData data;
 
-        //// Poor man's dependency inversion
-        //// Switched to Ninject
-        //protected BaseApiController()
-        //    : this(new DngData(new DngDbContext()))
-        //{
-        //}
-
         protected BaseApiController(IDngData data)
         {
             this.data = data;
@@ -26,7 +19,9 @@
         [NonAction]
         protected UserViewModel GetUserModel(string username)
         {
-            var foundUser = this.data.Users.All()
+            var foundUser = this.data
+                .Users
+                .All()
                 .Where(user => user.UserName == username)
                 .Select(UserViewModel.FromUser)
                 .FirstOrDefault();
@@ -37,7 +32,9 @@
         [NonAction]
         protected User GetUser(string username)
         {
-            var foundUser = this.data.Users.All()
+            var foundUser = this.data
+                .Users
+                .All()
                 .Where(user => user.UserName == username)
                 .FirstOrDefault();
 
