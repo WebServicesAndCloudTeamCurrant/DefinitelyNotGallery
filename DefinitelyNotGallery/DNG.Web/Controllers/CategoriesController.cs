@@ -25,13 +25,14 @@
         }
 
         [HttpGet]
-        public IHttpActionResult ById(int id) // its buggy 
+        public IHttpActionResult ById(int id)
         {
             var category = this.data
-                .Categories
-                .All()
-                .Where(c => c.CategoryID == id)
-                .FirstOrDefault();
+               .Categories
+               .All()
+               .Where(a => a.CategoryID == id)
+               .Select(CategoryViewModel.FromCategory)
+               .FirstOrDefault();
 
             if (category == null)
             {
@@ -42,7 +43,7 @@
         }
 
         [HttpPost]
-        public IHttpActionResult Create(CategoryViewModel category) // its buggy
+        public IHttpActionResult Create(CategoryViewModel category)
         {
             if (!this.ModelState.IsValid)
             {
@@ -58,23 +59,6 @@
             this.data.SaveChanges();
 
             return Ok();
-        }
-
-        [HttpGet]
-        public IHttpActionResult AllImagesByCategoryId(int id)
-        {
-            var images = this.data
-                .Images
-                .All()
-                .Where(x => x.CategoryID == id)
-                .Select(x => x);
-
-            if (images == null)
-            {
-                return BadRequest(string.Format("Category with id: '{0}' does not have any images!"));
-            }
-
-            return Ok(images);
         }
     }
 }
