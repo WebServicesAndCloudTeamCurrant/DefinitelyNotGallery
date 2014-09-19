@@ -133,7 +133,7 @@
 
             if (foundUserToUnFollow == null)
             {
-                return BadRequest("User to follow does not exist - invalid username.");
+                return BadRequest("User to stop following does not exist - invalid username.");
             }
 
             foundUser.Following.Remove(foundUserToUnFollow);
