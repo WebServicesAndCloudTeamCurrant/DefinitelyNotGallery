@@ -5,6 +5,7 @@
     using DNG.Web.Models;
     using System.Linq;
     using System.Web.Http;
+    using Microsoft.AspNet.Identity;
 
     public class ImagesController : BaseApiController
     {
@@ -47,6 +48,53 @@
                 .Select(ImageViewModel.FromImage);
 
             return Ok(images);
+        }
+
+        [Authorize]
+        [HttpPut]
+        public IHttpActionResult UpdateImage(Image image)
+        {
+            var userId = this.User.Identity.GetUserId();
+
+            var imageFromDb = this.data
+                                .Images
+                                .All()
+                                .Where(i => i.ImageID == image.ImageID)
+                                .FirstOrDefault();
+            
+            if(userId != imageFromDb.UserID)
+            {
+                return BadRequest("You are not authorized to change this image");
+            }
+
+            imageFromDb.Name = image.Name;
+            imageFromDb.Url = image.Url;
+            imageFromDb.Description = image.Description;
+
+            this.data.SaveChanges();
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpDelete]
+        public IHttpActionResult DeleteImage(Image image)
+        {
+            var userId = this.User.Identity.GetUserId();
+
+            var imageFromDb = this.data
+                                .Images
+                                .All()
+                                .Where(i => i.ImageID == image.ImageID)
+                                .FirstOrDefault();
+
+            if (userId != imageFromDb.UserID)
+            {
+                return BadRequest("You are not authorized to change this image");
+            }
+
+            this.data.Images.Delete(imageFromDb);
+            this.data.SaveChanges();
+            return Ok();
         }
     }
 }
