@@ -61,7 +61,11 @@
                                 .All()
                                 .Where(i => i.ImageID == image.ImageID)
                                 .FirstOrDefault();
-            
+            if (imageFromDb == null)
+            {
+                return BadRequest("The image does not exist");
+            }
+
             if(userId != imageFromDb.UserID)
             {
                 return BadRequest("You are not authorized to change this image");
@@ -86,6 +90,11 @@
                                 .All()
                                 .Where(i => i.ImageID == image.ImageID)
                                 .FirstOrDefault();
+            
+            if (imageFromDb == null)
+            {
+                return BadRequest("The image does not exist");
+            }
 
             if (userId != imageFromDb.UserID)
             {
